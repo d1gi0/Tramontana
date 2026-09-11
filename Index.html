@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il mio sito</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 60px;
+            margin: 0;
+        }
+
+        p {
+            font-size: 20px;
+            color: #bbb;
+        }
+
+        .button {
+            margin-top: 25px;
+            padding: 15px 25px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        section {
+            padding: 80px 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 40px;
+        }
+
+        .project {
+            background: #1c1c1c;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Il tuo nome</h1>
+        <p>Studente · Creativo · Progetti</p>
+
+        <a href="#progetti" class="button">
+            Scopri i miei progetti
+        </a>
+    </header>
+
+    <section>
+        <h2>Chi sono</h2>
+
+        <p>
+            Ciao! Sono [TUO NOME].
+            Questo è il mio sito personale, dove raccolgo
+            i miei progetti, le mie esperienze e le cose
+            che sto imparando.
+        </p>
+    </section>
+
+    <section id="progetti">
+        <h2>I miei progetti</h2>
+
+        <div class="project">
+            <h3>Progetto 1</h3>
+            <p>
+                Descrizione del primo progetto.
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>Progetto 2</h3>
+            <p>
+                Descrizione del secondo progetto.
+            </p>
+        </div>
+
+        <div class="project">
+            <h3>Progetto 3</h3>
+            <p>
+                Descrizione del terzo progetto.
+            </p>
+        </div>
+    </section>
+
+</body>
+</html>
