@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tramontana</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f3ee;
+            color: #1d2b2a;
+        }
+
+        /* HEADER */
+
+        header {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            background: rgba(245, 243, 238, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #ddd8ce;
+        }
+
+        .menu-button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: #1d2b2a;
+            color: white;
+            border-radius: 8px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .logo {
+            margin-left: 20px;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* MENU */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 320px;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 2000;
+            padding: 90px 30px 30px;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.15);
+            transition: left 0.3s ease;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: none;
+            background: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .side-menu h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .side-menu a {
+            display: block;
+            text-decoration: none;
+            color: #1d2b2a;
+            font-size: 18px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+            cursor: pointer;
+        }
+
+        .side-menu a:hover {
+            padding-left: 8px;
+        }
+
+        /* SFONDO MENU */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* HERO */
+
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+            background:
+                linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7")
+                center/cover;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 10vw, 110px);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            line-height: 1.6;
+        }
+
+        /* SEZIONI */
+
+        section {
+            padding: 100px 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        section h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+        }
+
+        section p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ESPERIENZA */
+
+        .experience {
+            background: white;
+            max-width: none;
+        }
+
+        .experience-inner {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* FOTO */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* CONTATTI */
+
+        .contact {
+            background: #1d2b2a;
+            color: white;
+            max-width: none;
+        }
+
+        .contact-inner {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .contact a {
+            color: white;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111b1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .side-menu {
+                width: 280px;
+                left: -280px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                letter-spacing: 4px;
+            }
+
+            section {
+                padding: 75px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+        <button class="menu-button" onclick="openMenu()">☰</button>
+
+        <div class="logo">
+            TRAMONTANA
+        </div>
+    </header>
+
+
+    <!-- MENU LATERALE -->
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <nav class="side-menu" id="sideMenu">
+
+        <button class="close-button" onclick="closeMenu()">×</button>
+
+        <h2>Tramontana</h2>
+
+        <a href="#esperienza" onclick="closeMenu()">
+            La nostra esperienza
+        </a>
+
+        <a href="#chi-siamo" onclick="closeMenu()">
+            Chi siamo
+        </a>
+
+        <a href="#foto" onclick="closeMenu()">
+            Foto
+        </a>
+
+        <a href="#contatti" onclick="closeMenu()">
+            Contattaci
+        </a>
+
+        <a href="#faq" onclick="closeMenu()">
+            FAQ
+        </a>
+
+    </nav>
+
+
+    <!-- PAGINA PRINCIPALE -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>TRAMONTANA</h1>
+
+                <p>
+                    Esperienze, persone e luoghi da scoprire.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ESPERIENZA -->
+
+        <section class="experience" id="esperienza">
+
+            <div class="experience-inner">
+
+                <h2>La nostra esperienza</h2>
+
+                <p>
+                    Tramontana nasce dalla voglia di trasformare le nostre
+                    esperienze in qualcosa da condividere.
+                    Qui puoi raccontare quello che avete fatto,
+                    i luoghi che avete visitato e tutto ciò che ha dato
+                    vita al progetto Tramontana.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>
+                        Questa parte possiamo personalizzarla completamente
+                        con la vostra storia.
+                    </strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHI SIAMO -->
+
+        <section id="chi-siamo">
+
+            <h2>Chi siamo</h2>
+
+            <p>
+                Siamo un gruppo di persone unite dalla passione per
+                l'avventura, i viaggi e le nuove esperienze.
+                Tramontana è il nostro spazio per raccontarle.
+            </p>
+
+        </section>
+
+
+        <!-- FOTO -->
+
+        <section id="foto">
+
+            <h2>Foto</h2>
+
+            <p>
+                Alcuni momenti delle nostre esperienze.
+            </p>
+
+            <div class="gallery">
+
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">
+
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7">
+
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e">
+
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+
+            </div>
+
+        </section>
+
+
+        <!-- FAQ -->
+
+        <section id="faq">
+
+            <h2>FAQ</h2>
+
+            <p>
+                <strong>Cos'è Tramontana?</strong>
+            </p>
+
+            <p>
+                Tramontana è uno spazio dedicato alle nostre esperienze
+                e alle storie che vogliamo condividere.
+            </p>
+
+            <br>
+
+            <p>
+                <strong>Come posso contattarvi?</strong>
+            </p>
+
+            <p>
+                Puoi utilizzare i nostri contatti nella sezione
+                dedicata.
+            </p>
+
+        </section>
+
+
+        <!-- CONTATTI -->
+
+        <section class="contact" id="contatti">
+
+            <div class="contact-inner">
+
+                <h2>Contattaci</h2>
+
+                <p>
+                    Hai una domanda o vuoi saperne di più?
+                </p>
+
+                <br>
+
+                <p>
+                    📧 Email:
+                    <a href="mailto:info@tramontana.it">
+                        info@tramontana.it
+                    </a>
+                </p>
+
+                <p>
+                    📱 Instagram:
+                    <a href="#">
+                        @tramontana
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Tramontana
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function openMenu() {
+
+            document.getElementById("sideMenu")
+                .classList.add("open");
+
+            document.getElementById("overlay")
+                .classList.add("show");
+        }
+
+
+        function closeMenu() {
+
+            document.getElementById("sideMenu")
+                .classList.remove("open");
+
+            document.getElementById("overlay")
+                .classList.remove("show");
+        }
+
+    </script>
+
+</body>
+</html>
