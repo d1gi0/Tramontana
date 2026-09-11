@@ -1,112 +1,292 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il mio sito</title>
+
+    <title>Tramontana</title>
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
+        * {
+            box-sizing: border-box;
         }
 
-        header {
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #071923;
+            color: white;
+            font-family: Georgia, serif;
+        }
+
+        /* MENU */
+
+        .menu-button {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255,255,255,0.5);
+            color: white;
+
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+
+            width: 280px;
+            height: 100vh;
+
+            background: #071923;
+
+            padding: 100px 35px 30px;
+
+            z-index: 999;
+
+            transition: left 0.4s ease;
+        }
+
+        .menu.open {
+            left: 0;
+        }
+
+        .menu h2 {
+            font-size: 30px;
+            margin-bottom: 40px;
+        }
+
+        .menu a {
+            display: block;
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 19px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .menu a:hover {
+            opacity: 0.6;
+        }
+
+        /* HOME */
+
+        .hero {
             min-height: 100vh;
+
+            position: relative;
+
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+
             text-align: center;
+
+            overflow: hidden;
+        }
+
+        .hero img {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background: rgba(0, 15, 25, 0.38);
+
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
             padding: 30px;
         }
 
-        h1 {
-            font-size: 60px;
+        .hero h1 {
+            font-size: clamp(60px, 14vw, 150px);
+
+            letter-spacing: 12px;
+
             margin: 0;
+
+            font-weight: normal;
         }
 
-        p {
+        .hero p {
             font-size: 20px;
-            color: #bbb;
+
+            letter-spacing: 4px;
+
+            margin-top: 15px;
         }
 
-        .button {
-            margin-top: 25px;
-            padding: 15px 25px;
-            background: white;
-            color: black;
-            text-decoration: none;
-            border-radius: 30px;
+        /* SEZIONE FOTO */
+
+        .photo-section {
+            padding: 100px 7%;
+            text-align: center;
         }
 
-        section {
-            padding: 80px 30px;
-            max-width: 900px;
+        .photo-section img {
+            width: 100%;
+            max-width: 1100px;
+
+            display: block;
+
             margin: auto;
+
+            border-radius: 3px;
         }
 
-        h2 {
+        .photo-section h2 {
             font-size: 40px;
+            font-weight: normal;
         }
 
-        .project {
-            background: #1c1c1c;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 15px;
+        .photo-section p {
+            max-width: 650px;
+
+            margin: 25px auto;
+
+            font-family: Arial, sans-serif;
+
+            line-height: 1.8;
+
+            color: #c7d2d7;
+        }
+
+        footer {
+            text-align: center;
+
+            padding: 50px;
+
+            color: #8999a0;
+
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Il tuo nome</h1>
-        <p>Studente · Creativo · Progetti</p>
+    <!-- PULSANTE MENU -->
 
-        <a href="#progetti" class="button">
-            Scopri i miei progetti
+    <button class="menu-button" onclick="apriMenu()">
+        ⋯
+    </button>
+
+
+    <!-- MENU -->
+
+    <nav class="menu" id="menu">
+
+        <h2>Tramontana</h2>
+
+        <a href="index.html">Home</a>
+
+        <a href="esperienza.html">
+            La nostra esperienza
         </a>
-    </header>
 
-    <section>
-        <h2>Chi sono</h2>
+        <a href="viaggio.html">
+            Il viaggio
+        </a>
 
-        <p>
-            Ciao! Sono [TUO NOME].
-            Questo è il mio sito personale, dove raccolgo
-            i miei progetti, le mie esperienze e le cose
-            che sto imparando.
-        </p>
-    </section>
+        <a href="galleria.html">
+            Galleria
+        </a>
 
-    <section id="progetti">
-        <h2>I miei progetti</h2>
+        <a href="contatti.html">
+            Contatti
+        </a>
 
-        <div class="project">
-            <h3>Progetto 1</h3>
+    </nav>
+
+
+    <!-- HOME -->
+
+    <main>
+
+        <section class="hero">
+
+            <img src="foto1.jpg" alt="Esperienza in barca a vela">
+
+            <div class="hero-content">
+
+                <h1>TRAMONTANA</h1>
+
+                <p>
+                    Un'esperienza sospesa tra vento e mare
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="photo-section">
+
+            <h2>Il mare, il vento, la vela.</h2>
+
             <p>
-                Descrizione del primo progetto.
+                Questo spazio racconta la nostra esperienza
+                in mare, attraverso immagini, ricordi e parole.
             </p>
-        </div>
 
-        <div class="project">
-            <h3>Progetto 2</h3>
-            <p>
-                Descrizione del secondo progetto.
-            </p>
-        </div>
+            <img src="foto2.jpg" alt="Barca a vela">
 
-        <div class="project">
-            <h3>Progetto 3</h3>
-            <p>
-                Descrizione del terzo progetto.
-            </p>
-        </div>
-    </section>
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        TRAMONTANA
+
+    </footer>
+
+
+    <script>
+
+        function apriMenu() {
+
+            document
+                .getElementById("menu")
+                .classList.toggle("open");
+
+        }
+
+    </script>
 
 </body>
 </html>
